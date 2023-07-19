@@ -1,1 +1,27 @@
+server:
+  port: 0
 
+# 테스트 데이터베이스 (default profile)
+spring:
+  application:
+    name: catalog-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: test
+    password: test
+    url: jdbc:mysql://192.168.0.18:3306/test
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
