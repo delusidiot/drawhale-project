@@ -3,12 +3,15 @@ package com.drawhale.authenticationservice.service;
 import com.drawhale.authenticationservice.dto.UserDto;
 import com.drawhale.authenticationservice.entity.UserEntity;
 import com.drawhale.authenticationservice.repository.UserRepository;
+import com.drawhale.authenticationservice.vo.ResponseOrder;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -40,6 +43,8 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not Found"));
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+        List<ResponseOrder> orders = new ArrayList<>();
+        userDto.setOrders(orders);
         return userDto;
     }
 }
