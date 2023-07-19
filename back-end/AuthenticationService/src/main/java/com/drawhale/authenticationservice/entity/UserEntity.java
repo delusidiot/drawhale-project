@@ -2,6 +2,7 @@ package com.drawhale.authenticationservice.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -22,5 +23,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String encryptedPassword;
 
+    @Column(nullable = false, updatable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 }

@@ -25,7 +25,7 @@ public class CatalogEntity implements Serializable {
     @Column(nullable = false)
     private Integer unitPrice;
 
-    @Column(nullable = false, updatable = false, insertable = false)
+    @Column(nullable = false, updatable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @CreationTimestamp
     private LocalDateTime createdAt;
 }
