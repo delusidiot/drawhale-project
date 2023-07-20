@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ModelMapper mapper;
 
     @PostMapping("/users")
     public ResponseEntity<ResponseUser> register(
             @Valid @RequestBody RegisterUserCommand user
     ) {
-        ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
@@ -37,7 +37,6 @@ public class UserController {
             @PathVariable("userId") String userId
     ) {
         UserDto userDto = userService.getUserByUserId(userId);
-        ModelMapper mapper = new ModelMapper();
         ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
         return ResponseEntity.ok(responseUser);
     }
