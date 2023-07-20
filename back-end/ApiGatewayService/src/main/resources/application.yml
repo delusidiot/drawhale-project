@@ -11,14 +11,21 @@ spring:
           uri: lb://AUTHENTICATION-SERVICE
           predicates:
             - Path=/auth/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
 
 eureka:
   instance:
