@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class RequestUser {
+public class RegisterUserCommand {
     @NotNull(message = "Email cannot be null")
     @Email(message = "Email")
     private String email;

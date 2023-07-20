@@ -2,9 +2,10 @@ package com.drawhale.authenticationservice.application.controller;
 
 import com.drawhale.authenticationservice.domain.user.dto.UserDto;
 import com.drawhale.authenticationservice.domain.user.service.UserService;
-import com.drawhale.authenticationservice.domain.user.vo.RequestUser;
+import com.drawhale.authenticationservice.domain.user.vo.RegisterUserCommand;
 import com.drawhale.authenticationservice.domain.user.vo.ResponseUser;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.http.HttpStatus;
@@ -13,16 +14,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
     @PostMapping("/users")
     public ResponseEntity<ResponseUser> register(
-            @Valid @RequestBody RequestUser user
+            @Valid @RequestBody RegisterUserCommand user
     ) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -35,7 +33,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId) {
+    public ResponseEntity<ResponseUser> getUser(
+            @PathVariable("userId") String userId
+    ) {
         UserDto userDto = userService.getUserByUserId(userId);
         ModelMapper mapper = new ModelMapper();
         ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
