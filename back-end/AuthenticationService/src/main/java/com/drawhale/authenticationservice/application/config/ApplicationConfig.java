@@ -1,4 +1,4 @@
-package com.drawhale.authenticationservice.config;
+package com.drawhale.authenticationservice.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

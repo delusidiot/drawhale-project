@@ -1,4 +1,4 @@
-package com.drawhale.authenticationservice.config;
+package com.drawhale.authenticationservice.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +11,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    private final String[] PERMIT_URI = {"/auth/users/**"};
+    private final String[] PERMIT_URI = {"/users/**", "/login/**"};
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers(PERMIT_URI).permitAll();
+                    authorize.anyRequest().authenticated();
                 })
                 .sessionManagement(session-> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

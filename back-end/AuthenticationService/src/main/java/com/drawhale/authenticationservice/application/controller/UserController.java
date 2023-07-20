@@ -1,9 +1,9 @@
-package com.drawhale.authenticationservice.controller;
+package com.drawhale.authenticationservice.application.controller;
 
-import com.drawhale.authenticationservice.dto.UserDto;
-import com.drawhale.authenticationservice.service.UserService;
-import com.drawhale.authenticationservice.vo.RequestUser;
-import com.drawhale.authenticationservice.vo.ResponseUser;
+import com.drawhale.authenticationservice.domain.user.dto.UserDto;
+import com.drawhale.authenticationservice.domain.user.service.UserService;
+import com.drawhale.authenticationservice.domain.user.vo.RequestUser;
+import com.drawhale.authenticationservice.domain.user.vo.ResponseUser;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/")
 public class UserController {
     private final UserService userService;
 
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ResponseUser> createUser(
+    public ResponseEntity<ResponseUser> register(
             @Valid @RequestBody RequestUser user
     ) {
         ModelMapper mapper = new ModelMapper();
@@ -41,5 +41,4 @@ public class UserController {
         ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
         return ResponseEntity.ok(responseUser);
     }
-
 }

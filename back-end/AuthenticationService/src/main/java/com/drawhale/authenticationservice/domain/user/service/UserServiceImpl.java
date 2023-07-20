@@ -1,9 +1,9 @@
-package com.drawhale.authenticationservice.service;
+package com.drawhale.authenticationservice.domain.user.service;
 
-import com.drawhale.authenticationservice.dto.UserDto;
-import com.drawhale.authenticationservice.entity.UserEntity;
-import com.drawhale.authenticationservice.repository.UserRepository;
-import com.drawhale.authenticationservice.vo.ResponseOrder;
+import com.drawhale.authenticationservice.domain.user.dto.UserDto;
+import com.drawhale.authenticationservice.domain.user.vo.ResponseOrder;
+import com.drawhale.authenticationservice.domain.user.entity.UserEntity;
+import com.drawhale.authenticationservice.domain.user.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

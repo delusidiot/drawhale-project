@@ -1,4 +1,4 @@
-package com.drawhale.authenticationservice.entity;
+package com.drawhale.authenticationservice.domain.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class UserEntity {
     private String name;
     @Column(nullable = false, unique = true)
     private String userId;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "password")
     private String encryptedPassword;
 
     @Column(nullable = false, updatable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")

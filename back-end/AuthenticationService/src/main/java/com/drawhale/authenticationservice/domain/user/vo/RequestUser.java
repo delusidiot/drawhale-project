@@ -1,4 +1,4 @@
-package com.drawhale.authenticationservice.vo;
+package com.drawhale.authenticationservice.domain.user.vo;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

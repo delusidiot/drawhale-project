@@ -1,6 +1,6 @@
-package com.drawhale.authenticationservice.dto;
+package com.drawhale.authenticationservice.domain.user.dto;
 
-import com.drawhale.authenticationservice.vo.ResponseOrder;
+import com.drawhale.authenticationservice.domain.user.vo.ResponseOrder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
