@@ -1,4 +1,4 @@
-package com.drawhale.authenticationservice.domain.user.vo;
+package com.drawhale.authenticationservice.application.annotation;
 
 
 import jakarta.validation.Constraint;

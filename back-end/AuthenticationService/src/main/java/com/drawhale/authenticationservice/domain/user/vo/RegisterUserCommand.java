@@ -1,5 +1,6 @@
 package com.drawhale.authenticationservice.domain.user.vo;
 
+import com.drawhale.authenticationservice.application.annotation.Password;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
