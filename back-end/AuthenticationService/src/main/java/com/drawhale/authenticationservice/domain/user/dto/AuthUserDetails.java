@@ -1,5 +1,6 @@
 package com.drawhale.authenticationservice.domain.user.dto;
 
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,6 +8,7 @@ import java.io.Serial;
 import java.util.Collection;
 import java.util.Set;
 
+@Builder
 public class AuthUserDetails implements UserDetails {
 
 
@@ -16,6 +18,7 @@ public class AuthUserDetails implements UserDetails {
     public AuthUserDetails(
             String email,
             String password,
+            String userId,
             boolean accountNonExpired,
             boolean accountNonLocked,
             boolean credentialsNonExpired,
@@ -24,6 +27,7 @@ public class AuthUserDetails implements UserDetails {
     ) {
         this.email = email;
         this.password = password;
+        this.userId = userId;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
@@ -33,6 +37,7 @@ public class AuthUserDetails implements UserDetails {
 
     private final String email;
     private String password;
+    private final String userId;
     private final boolean accountNonExpired;
     private final boolean accountNonLocked;
     private final boolean credentialsNonExpired;

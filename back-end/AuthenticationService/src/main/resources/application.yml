@@ -25,4 +25,11 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
 
-# Test Database
+token:
+  secret-key: UFFnNK7doTDJ22DjvYpXxWWoKnD/CKl3PrgL3Djjoi0BpZiC9x7Z8VlZ4+Har3vi
+  access-token:
+    expiration: 86400000
+  refresh-token:
+    expiration: 9604800000
+
+

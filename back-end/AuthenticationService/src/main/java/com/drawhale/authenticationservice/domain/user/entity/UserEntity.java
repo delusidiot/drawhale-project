@@ -1,10 +1,12 @@
 package com.drawhale.authenticationservice.domain.user.entity;
 
+import com.drawhale.authenticationservice.domain.token.entity.TokenEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,6 +24,9 @@ public class UserEntity {
     private String userId;
     @Column(nullable = false, name = "password")
     private String encryptedPassword;
+
+    @OneToMany(mappedBy = "user")
+    private List<TokenEntity> tokens;
 
     @Column(nullable = false, updatable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @CreationTimestamp

@@ -24,6 +24,7 @@ public class AuthUserDetailsService implements UserDetailsService {
         return new AuthUserDetails(
                 userEntity.getEmail(),
                 userEntity.getEncryptedPassword(),
+                userEntity.getUserId(),
                 true, true, true, true, grantedAuthorities
         );
     }

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseUser {
+public class UserResponse {
     private String email;
     private String name;
     private String userId;
