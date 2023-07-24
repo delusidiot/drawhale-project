@@ -17,6 +17,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,6 +38,7 @@ public class UserReadService {
     private final ModelMapper mapper;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final StringRedisTemplate redisTemplate;
 
     public UserDto getUserByUserId(String userId) {
         UserEntity userEntity = userRepository.findByUserId(userId)
@@ -60,6 +63,8 @@ public class UserReadService {
                 .userId(userEntity.getUserId())
                 .build();
         String accessToken = jwtService.generateAccessToken(user);
+        ValueOperations<String, String> ops = redisTemplate.opsForValue();
+        ops.set(command.getEmail(), accessToken);
         String refreshToken = jwtService.generateRefreshToken(user);
         saveUserRefreshToken(userEntity, refreshToken);
         return AuthenticationResponse.builder()
